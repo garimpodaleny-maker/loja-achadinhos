@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Secreto - Gerador de Produtos</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+        .admin-helper {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 { text-align: center; color: #ee4d2d; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button {
+            width: 100%; padding: 12px; background: #ee4d2d; color: white;
+            border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 1rem;
+        }
+        button:hover { background: #d73211; }
+        textarea { width: 100%; height: 150px; margin-top: 20px; font-family: monospace; padding: 10px; }
+        .hint { font-size: 0.8rem; color: #777; margin-top: 5px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-helper">
+        <h2>🛠️ Gerador de Achadinhos</h2>
+        
+        <div class="form-group">
+            <label>Nome do Produto:</label>
+            <input type="text" id="g-nome" placeholder="Ex: Garrafa Térmica">
+        </div>
+        <div class="form-group">
+            <label>Preço:</label>
+            <input type="text" id="g-preco" placeholder="Ex: R$ 29,90">
+        </div>
+        <div class="form-group">
+            <label>Link da Imagem:</label>
+            <input type="text" id="g-imagem" placeholder="Cole o link da foto aqui">
+        </div>
+        <div class="form-group">
+            <label>Seu Link de Afiliado:</label>
+            <input type="text" id="g-link" placeholder="Cole seu link da Shopee aqui">
+        </div>
+        
+        <button onclick="gerarCodigo()">GERAR CÓDIGO</button>
+
+        <textarea id="codigoFinal" placeholder="O código aparecerá aqui..."></textarea>
+        <p class="hint">Copie o código acima e adicione no arquivo index.html</p>
+    </div>
+
+    <script>
+        function gerarCodigo() {
+            const nome = document.getElementById('g-nome').value;
+            const preco = document.getElementById('g-preco').value;
+            const imagem = document.getElementById('g-imagem').value;
+            const link = document.getElementById('g-link').value;
+
+            const codigo = `    {
+        id: ${Date.now()},
+        nome: "${nome}",
+        preco: "${preco}",
+        imagem: "${imagem}",
+        link: "${link}"
+    },`;
+
+            document.getElementById('codigoFinal').value = codigo;
+        }
+    </script>
+</body>
+</html>
