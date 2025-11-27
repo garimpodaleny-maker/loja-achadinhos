@@ -168,80 +168,6 @@
             color: #999;
             font-size: 0.8rem;
         }
-
-        /* --- Gerador de Código (Admin Helper) --- */
-        .admin-helper {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #fff;
-            border: 2px dashed #ccc;
-            border-radius: 15px;
-        }
-        
-        .admin-title {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        .form-group {
-            margin-bottom: 10px;
-        }
-        
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-            color: #666;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .generate-btn {
-            width: 100%;
-            padding: 10px;
-            background: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .result-area {
-            margin-top: 15px;
-            background: #f4f4f4;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-        }
-
-        .result-area textarea {
-            width: 100%;
-            height: 100px;
-            font-family: monospace;
-            font-size: 0.8rem;
-            border: 1px solid #ccc;
-            padding: 5px;
-        }
-
-        .copy-hint {
-            font-size: 0.8rem;
-            color: green;
-            margin-top: 5px;
-            text-align: center;
-        }
-
-        details {
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -260,40 +186,7 @@
         <input type="text" id="searchInput" class="search-bar" placeholder="🔍 O que você está procurando hoje?">
 
         <div id="productsGrid" class="products-grid">
-            <!-- Produtos serão inseridos aqui via JS -->
-        </div>
-    </div>
-
-    <!-- Ferramenta para te ajudar a criar o código -->
-    <div class="admin-helper">
-        <details>
-            <summary class="admin-title">🛠️ Ferramenta: Criar Novo Produto (Clique aqui)</summary>
-            <div style="margin-top: 15px;">
-                <div class="form-group">
-                    <label>Nome do Produto:</label>
-                    <input type="text" id="g-nome" placeholder="Ex: Garrafa Térmica">
-                </div>
-                <div class="form-group">
-                    <label>Preço:</label>
-                    <input type="text" id="g-preco" placeholder="Ex: R$ 29,90">
-                </div>
-                <div class="form-group">
-                    <label>Link da Imagem (Botão direito na foto da Shopee -> Copiar endereço da imagem):</label>
-                    <input type="text" id="g-imagem" placeholder="https://...">
-                </div>
-                <div class="form-group">
-                    <label>Seu Link de Afiliado:</label>
-                    <input type="text" id="g-link" placeholder="https://shope.ee/...">
-                </div>
-                <button onclick="gerarCodigo()" class="generate-btn">Gerar Código</button>
-
-                <div class="result-area" id="resultArea">
-                    <p style="font-size:0.8rem; margin-bottom:5px;">Copie o código abaixo e cole dentro da lista <b>produtos</b> no script:</p>
-                    <textarea id="codigoFinal"></textarea>
-                    <p class="copy-hint">Código gerado! Agora copie e cole no lugar certo.</p>
-                </div>
             </div>
-        </details>
     </div>
 
     <footer>
@@ -303,7 +196,8 @@
 
     <script>
         // --- ⚙️ ÁREA DE CONFIGURAÇÃO DOS PRODUTOS ⚙️ ---
-        // Cole os códigos gerados aqui dentro desta lista:
+        // Para adicionar novos produtos, use o seu "Painel Secreto" para gerar o código
+        // e cole ele aqui dentro desta lista:
         const produtos = [
             {
                 id: 1,
@@ -384,27 +278,6 @@
             );
             renderizarProdutos(filtrados);
         });
-
-        // --- Função do Gerador (Ferramenta Extra) ---
-        function gerarCodigo() {
-            const nome = document.getElementById('g-nome').value;
-            const preco = document.getElementById('g-preco').value;
-            const imagem = document.getElementById('g-imagem').value;
-            const link = document.getElementById('g-link').value;
-
-            // Cria o objeto JSON string formatado
-            const codigo = `    {
-        id: ${Date.now()},
-        nome: "${nome}",
-        preco: "${preco}",
-        imagem: "${imagem}",
-        link: "${link}"
-    },`;
-
-            document.getElementById('codigoFinal').value = codigo;
-            document.getElementById('resultArea').style.display = 'block';
-        }
     </script>
 </body>
-
 </html>
